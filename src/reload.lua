@@ -72,14 +72,16 @@ function DamageHero_wrap(base, victim, triggerArgs)
 end
 
 function PerfectClearTraitFailedPresentation(traitData)
+	wait(0.30)
 	TraitUIDeactivateTrait(traitData)
 	PlaySound({ Name = "/SFX/ThanatosHermesKeepsakeFail" })
 	-- thread(PlayVoiceLines, HeroVoiceLines.KeepsakeChallengeFailedVoiceLines, true)
 	local existingTraitData = GetExistingUITrait(traitData)
-	if existingTraitData and existingTraitData.AnchorId ~= nil then
-		Shake({ Id = existingTraitData.AnchorId, Distance = 3, Speed = 200, Duration = 0.25 })
-		Flash({ Id = existingTraitData.AnchorId, Speed = 2, MinFraction = 0, MaxFraction = 0.8, Color = Color.Black, ExpireAfterCycle = true })
-	end
+	-- if existingTraitData and existingTraitData.AnchorId ~= nil then
+	-- 	Shake({ Id = existingTraitData.AnchorId, Distance = 3, Speed = 200, Duration = 0.25 })
+	-- end
+	Flash({ Speed = 2, MinFraction = 0, MaxFraction = 0.8, Color = Color.Black, ExpireAfterCycle = true })
+	ShakeScreen({ Speed = 400, Distance = 4, FalloffSpeed = 1000, Duration = 0.3 })
 end
 
 function PerfectClearTraitSuccessPresentation(traitData)
