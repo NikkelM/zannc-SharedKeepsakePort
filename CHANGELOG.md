@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+- Moved Thanatos to this mod for Hades Biomes.
+- Reduced Package Size.
+- Added Clear Effects for Thanatos.
 
 ## [1.0.2] - 2025-10-24
 

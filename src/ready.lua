@@ -18,3 +18,13 @@ modutil.mod.Path.Wrap("EndEncounterEffects", function(base, currentRun, currentR
 	EndEncounterEffects_wrap(base, currentRun, currentRoom, currentEncounter)
 	base(currentRun, currentRoom, currentEncounter)
 end)
+
+modutil.mod.Path.Wrap("DamageHero", function(base, victim, triggerArgs)
+	DamageHero_wrap(base, victim, triggerArgs)
+	base(victim, triggerArgs)
+end)
+
+modutil.mod.Path.Wrap("StartEncounterEffects", function(base, encounter)
+	StartEncounterEffects_wrap(base, encounter)
+	base(encounter)
+end)

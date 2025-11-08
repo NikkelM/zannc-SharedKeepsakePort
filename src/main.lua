@@ -3,8 +3,8 @@
 
 local mods = rom.mods
 
----@module 'SGG_Modding-ENVY-auto'
-mods["SGG_Modding-ENVY"].auto()
+---@module 'LuaENVY-ENVY-auto'
+mods["LuaENVY-ENVY"].auto()
 
 rom = rom
 _PLUGIN = PLUGIN
@@ -47,6 +47,9 @@ local function on_ready()
 	end
 	if config.Patroclus.Enabled then
 		import("keepsakes/keepsake_patroclus.lua")
+	end
+	if config.Thanatos.Enabled then
+		import("keepsakes/keepsake_thanatos.lua")
 	end
 end
 
