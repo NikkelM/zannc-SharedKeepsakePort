@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+
+## [1.0.3] - 2025-11-08
+
 - Moved Thanatos to this mod for Hades Biomes.
 - Reduced Package Size.
 - Added Clear Effects for Thanatos.
@@ -18,7 +21,8 @@
 
 - Initial Release.
 
-[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.2...HEAD
+[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.3...HEAD
+[1.0.3]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/d9fa1801d87919a6b01dbf9a7293feddad74d5a2...1.0.0
