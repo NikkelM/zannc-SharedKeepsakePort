@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+
+## [1.0.4] - 2025-11-27
+
 - Update to match `Zagreus_Journey` naming
 
 ## [1.0.3] - 2025-11-08
@@ -22,7 +25,8 @@
 
 - Initial Release.
 
-[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.3...HEAD
+[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.4...HEAD
+[1.0.4]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.0...1.0.1
