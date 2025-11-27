@@ -1,5 +1,5 @@
 local mods = rom.mods
-local hades_Biomes = mods["NikkelM-Hades_Biomes"]
+local hades_Biomes = mods["NikkelM-Zagreus_Journey"]
 
 function CreateKeepsake_Thanatos()
 	table.insert(game.ScreenData.KeepsakeRack.ItemOrder, "PerfectClearDamageBonusKeepsake")

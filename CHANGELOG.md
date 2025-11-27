@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Unreleased]
+- Update to match `Zagreus_Journey` naming
 
 ## [1.0.3] - 2025-11-08
 
