@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Unreleased]
+- Missed Patroclus Keepsake name.
 
 ## [1.0.4] - 2025-11-27
 

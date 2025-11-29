@@ -141,7 +141,7 @@ local keepsake_patroclus = sjson.to_object({
 local keepsakerack_patroclus = sjson.to_object({
 	Id = "ShieldAfterHitKeepsake",
 	InheritFrom = "BaseBoonMultiline",
-	DisplayName = "Shattered Shackle",
+	DisplayName = "Broken Spearpoint",
 	Description = "After taking damage, become {$Keywords.Invulnerable} for {#AltUpgradeFormat}{$TooltipData.ExtractData.ShieldDuration} second(s){#Prev}. Refreshes after {#BoldFormat}7 seconds{#BoldFormat}.",
 }, Order)
 
