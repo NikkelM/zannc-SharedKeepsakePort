@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+
+## [1.0.5] - 2025-11-29
+
 - Missed Patroclus Keepsake name.
 
 ## [1.0.4] - 2025-11-27
@@ -26,7 +29,8 @@
 
 - Initial Release.
 
-[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.4...HEAD
+[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.5...HEAD
+[1.0.5]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.4...1.0.5
 [1.0.4]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.1...1.0.2
