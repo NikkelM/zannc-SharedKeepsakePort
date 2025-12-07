@@ -82,6 +82,7 @@ function CreateKeepsake_Thanatos()
 			UseTraitValue = "AccumulatedDamageBonus",
 		},
 		AccumulatedDamageBonus = 1,
+		CustomLabel = {}, -- lifehack
 
 		ExtractValues = {
 			{

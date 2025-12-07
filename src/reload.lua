@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 ---@meta _
 ---@diagnostic disable: lowercase-global
 
@@ -42,6 +43,9 @@ function EndEncounterEffects_wrap(base, currentRun, currentRoom, currentEncounte
 			if not currentEncounter.PlayerTookDamage and traitData.PerfectClearDamageBonus and currentRoom.Encounter.EncounterType ~= "NonCombat" then
 				traitData.AccumulatedDamageBonus = traitData.AccumulatedDamageBonus + (traitData.PerfectClearDamageBonus - 1)
 				PerfectClearTraitSuccessPresentation(traitData)
+				local thanatosTrait = GetHeroTrait("PerfectClearDamageBonusKeepsake")
+				UpdateTraitNumber(thanatosTrait)
+
 				-- CurrentRun.CurrentRoom.PerfectEncounterCleared = true
 			elseif currentEncounter.PlayerTookDamage and traitData.PerfectClearDamageBonus then
 				PerfectClearTraitFailedPresentation(traitData)
@@ -49,6 +53,37 @@ function EndEncounterEffects_wrap(base, currentRun, currentRoom, currentEncounte
 		end
 	end
 end
+
+modutil.mod.Path.Wrap("TraitUICreateText", function(base, trait, args)
+	base(trait, args)
+	if trait.CustomLabel then
+		local total = (trait.AccumulatedDamageBonus - 1) * 100
+
+		local text = "UI_TimedKillBuff"
+		-- if trait.RoomsPerUpgrade.Rarity and (CurrentRun.Hero.UpgradableTraitCount or 0) <= 0 then
+		-- 	text = "HUD_NoEligibleUpgrades"
+		-- end
+		CreateTextBox({
+			Id = trait.TraitInfoCardId,
+			Text = text,
+			Font = "P22UndergroundSCMedium",
+			FontSize = 22,
+			Color = Color.White,
+			ShadowBlur = 0,
+			ShadowColor = { 0, 0, 0, 1 },
+			ShadowOffset = { 1, 2 },
+			OffsetX = xOffset,
+			OffsetY = yOffset,
+			Justification = "Center",
+			DataProperties = {
+				TextSymbolScale = 0.7,
+				TextSymbolOffsetY = 3,
+			},
+			LuaKey = "TempTextData",
+			LuaValue = { Value = total },
+		})
+	end
+end)
 
 function StartEncounterEffects_wrap(base, encounter)
 	CheckForKeepsakeTraits()
