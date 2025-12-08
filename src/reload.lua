@@ -57,31 +57,33 @@ end
 modutil.mod.Path.Wrap("TraitUICreateText", function(base, trait, args)
 	base(trait, args)
 	if trait.CustomLabel then
-		local total = (trait.AccumulatedDamageBonus - 1) * 100
+		if trait.AccumulatedDamageBonus then
+			local total = (trait.AccumulatedDamageBonus - 1) * 100
 
-		local text = "UI_TimedKillBuff"
-		-- if trait.RoomsPerUpgrade.Rarity and (CurrentRun.Hero.UpgradableTraitCount or 0) <= 0 then
-		-- 	text = "HUD_NoEligibleUpgrades"
-		-- end
-		CreateTextBox({
-			Id = trait.TraitInfoCardId,
-			Text = text,
-			Font = "P22UndergroundSCMedium",
-			FontSize = 22,
-			Color = Color.White,
-			ShadowBlur = 0,
-			ShadowColor = { 0, 0, 0, 1 },
-			ShadowOffset = { 1, 2 },
-			OffsetX = xOffset,
-			OffsetY = yOffset,
-			Justification = "Center",
-			DataProperties = {
-				TextSymbolScale = 0.7,
-				TextSymbolOffsetY = 3,
-			},
-			LuaKey = "TempTextData",
-			LuaValue = { Value = total },
-		})
+			local text = "UI_TimedKillBuff"
+			-- if trait.RoomsPerUpgrade.Rarity and (CurrentRun.Hero.UpgradableTraitCount or 0) <= 0 then
+			-- 	text = "HUD_NoEligibleUpgrades"
+			-- end
+			CreateTextBox({
+				Id = trait.TraitInfoCardId,
+				Text = text,
+				Font = "P22UndergroundSCMedium",
+				FontSize = 22,
+				Color = Color.White,
+				ShadowBlur = 0,
+				ShadowColor = { 0, 0, 0, 1 },
+				ShadowOffset = { 1, 2 },
+				OffsetX = xOffset,
+				OffsetY = yOffset,
+				Justification = "Center",
+				DataProperties = {
+					TextSymbolScale = 0.7,
+					TextSymbolOffsetY = 3,
+				},
+				LuaKey = "TempTextData",
+				LuaValue = { Value = total },
+			})
+		end
 	end
 end)
 
