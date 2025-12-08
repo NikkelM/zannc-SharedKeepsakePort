@@ -1,11 +1,15 @@
 # Changelog
 
 ## [Unreleased]
+
+## [1.0.8] - 2025-12-08
+
 - Fix crash with grisly gain.
 
 ## [1.0.7] - 2025-12-07
 
 ## [1.0.6] - 2025-11-29
+
 - Add % to Thanatos' Keepsake
 
 ## [1.0.5] - 2025-11-29
@@ -35,7 +39,8 @@
 
 - Initial Release.
 
-[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.7...HEAD
+[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.8...HEAD
+[1.0.8]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.7...1.0.8
 [1.0.7]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.6...1.0.7
 [1.0.6]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.5...1.0.6
 [1.0.5]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.4...1.0.5
