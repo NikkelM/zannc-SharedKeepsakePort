@@ -1,99 +1,60 @@
-local mods = rom.mods
-local hades_Biomes = mods["NikkelM-Zagreus_Journey"]
+local maxReq = {}
+local minReq = {}
 
-function CreateKeepsake_Patroclus()
-	-- Creating Keepsake Order
-	table.insert(game.ScreenData.KeepsakeRack.ItemOrder, "ShieldAfterHitKeepsake")
-
-	-- Creating Gift Data
-	if hades_Biomes then
-		game.GiftData.NPC_Patroclus_01 = {
-			InheritFrom = { "DefaultGiftData" },
-			MaxedRequirement = {
-				{
-					PathTrue = { "GameState", "TextLinesRecord", "PatroclusGift08_A" },
-				},
-			},
-			MaxedIcon = "Keepsake_Patroclus_Corner",
-			MaxedSticker = "Keepsake_Patroclus",
-			[1] = {
-				GameStateRequirements = {
-					{
-						PathTrue = { "GameState", "TextLinesRecord", "PatroclusGift01" },
-					},
-				},
-				Gift = "ShieldAfterHitKeepsake",
-			},
-		}
-	else
-		game.GiftData.NPC_Patroclus_01 = {
-			[1] = {
-				Gift = "ShieldAfterHitKeepsake",
-			},
-			InheritFrom = { "DefaultGiftData" },
-			Name = "ShieldAfterHitKeepsake",
-		}
-	end
-
-	game.EffectData.PatroclusInvulnerable = {
-		ShowInvincububble = true,
-		DataProperties = {
-			Type = "INVULNERABLE",
-			Duration = 8,
-			Modifier = 1.0,
-			CanAffectInvulnerable = true,
-			FlashFrontFxWhenExpiring = false,
-			FlashBackFxWhenExpiring = false,
-		},
+if mod.hades_Biomes then
+	maxReq = {
+		PathTrue = { "GameState", "TextLinesRecord", "PatroclusGift08_A" },
 	}
+	minReq = {
+		PathTrue = { "GameState", "TextLinesRecord", "PatroclusGift01" },
+	}
+end
 
-	-- Creating Keepsake Data
-	game.TraitData.ShieldAfterHitKeepsake = {
-		Icon = "Broken_Spearpoint",
-		InheritFrom = { "GiftTrait" },
-		Name = "ShieldAfterHitKeepsake",
-		CustomTrayText = "ShieldAfterHitKeepsake_Tray",
+gods.CreateKeepsake({
+	characterName = "Patroclus",
+	internalKeepsakeName = "ShieldAfterHitKeepsake",
 
-		-- Always add these, so it SHUTS UP
-		ShowInHUD = true,
-		Ordered = true,
-		HUDScale = 0.435,
-		PriorityDisplay = true,
-		ChamberThresholds = { 25, 50 },
-		HideInRunHistory = true,
-		Slot = "Keepsake",
-		InfoBackingAnimation = "KeepsakeSlotBase",
-		RecordCacheOnEquip = true,
-		TraitOrderingValueCache = -1,
-		ActiveSlotOffsetIndex = 0,
+	RarityLevels = {
+		Common = { Multiplier = config.Patroclus.a_KeepsakeCommon },
+		Rare = { Multiplier = config.Patroclus.b_KeepsakeRare },
+		Epic = { Multiplier = config.Patroclus.c_KeepsakeEpic },
+		Heroic = { Multiplier = config.Patroclus.d_KeepsakeHeroic },
+	},
 
-		EquipSound = "/Leftovers/Menu Sounds/TalismanMetalClankDown",
-
-		FrameRarities = {
-			Common = "Frame_Keepsake_Rank1",
-			Rare = "Frame_Keepsake_Rank2",
-			Epic = "Frame_Keepsake_Rank3",
-			Heroic = "Frame_Keepsake_Rank4",
+	ExtractValues = {
+		{
+			Key = "ReportedDuration",
+			ExtractAs = "ShieldDuration",
+			Format = "SpeedModifiedDuration",
+			-- SkipAutoExtract = true,
 		},
+	},
 
-		CustomRarityLevels = {
-			"TraitLevel_Keepsake1",
-			"TraitLevel_Keepsake2",
-			"TraitLevel_Keepsake3",
-			"TraitLevel_Keepsake4",
-		},
+	EquipSound = "/Leftovers/Menu Sounds/TalismanMetalClankDown",
 
-		RarityLevels = {
-			Common = { Multiplier = config.Patroclus.a_KeepsakeCommon },
-			Rare = { Multiplier = config.Patroclus.b_KeepsakeRare },
-			Epic = { Multiplier = config.Patroclus.c_KeepsakeEpic },
-			Heroic = { Multiplier = config.Patroclus.d_KeepsakeHeroic },
-		},
+	Keepsake = {
+		displayName = "Broken Spearpoint",
+		description = "After taking damage, become {$Keywords.Invulnerable} for {#AltUpgradeFormat}{$TooltipData.ExtractData.ShieldDuration} second(s){#Prev}. Refreshes after {#BoldFormat}7 seconds{#BoldFormat}.",
+		trayDescription = "After taking damage, become {$Keywords.Invulnerable} for {#AltUpgradeFormat}{$TooltipData.ExtractData.ShieldDuration} second(s){#Prev}. Refreshes after {#BoldFormat}7 seconds{#BoldFormat}.",
+		signoffMax = "From {#AwardMaxFormat}Patroclus{#Prev}; you share an {#AwardMaxFormat}Enlightened Bond{#Prev}.{!Icons.ObjectiveSeparatorDark}}He passed bitterly from mortal life, but with you, rose above it all.",
+	},
 
+	Icons = {
+		iconPath = "GUI\\Screens\\AwardMenu\\Broken_Spearpoint",
+		maxIcon = "GUI\\Screens\\AwardMenu\\KeepsakeMaxGift\\Patroclus_02",
+		maxCornerIcon = "GUI\\Screens\\AwardMenu\\KeepsakeMaxGift\\Patroclus",
+	},
+
+	customGiftData = {
+		maxRequirement = maxReq,
+		minRequirement = minReq,
+	},
+
+	ExtraFields = {
 		OnSelfDamagedFunction = {
-			Name = _PLUGIN.guid .. "." .. "PatroclusRetaliate",
+			Name = mod .. "." .. "PatroclusRetaliate",
 			FunctionArgs = {
-				EffectName = "PatroclusInvulnerable",
+				EffectName = mod .. "PatroclusInvulnerable",
 
 				Duration = { BaseValue = 1.0 },
 				Cooldown = 7,
@@ -103,92 +64,20 @@ function CreateKeepsake_Patroclus()
 				},
 			},
 		},
+	},
+})
 
-		ExtractValues = {
-			{
-				Key = "ReportedDuration",
-				ExtractAs = "ShieldDuration",
-				Format = "SpeedModifiedDuration",
-				-- SkipAutoExtract = true,
-			},
-		},
-
-		SignOffData = {
-			{
-				GameStateRequirements = {
-					{
-						PathTrue = { "GameState", "TextLinesRecord", "PatroclusGift08_A" },
-					},
-				},
-				Text = "SignoffPatroclus_Max",
-			},
-			{
-				Text = "SignoffPatroclus",
-			},
-		},
-	}
-end
-
---#region Patroclus Data
--- Used for when you have it equipped
-local keepsake_patroclus = sjson.to_object({
-	Id = "ShieldAfterHitKeepsake_Tray",
-	InheritFrom = "ShieldAfterHitKeepsake",
-	Description = "After taking damage, become {$Keywords.Invulnerable} for {#AltUpgradeFormat}{$TooltipData.ExtractData.ShieldDuration} second(s){#Prev}. Refreshes after {#BoldFormat}7 seconds{#BoldFormat}.",
-}, Order)
-
--- In rack description
-local keepsakerack_patroclus = sjson.to_object({
-	Id = "ShieldAfterHitKeepsake",
-	InheritFrom = "BaseBoonMultiline",
-	DisplayName = "Broken Spearpoint",
-	Description = "After taking damage, become {$Keywords.Invulnerable} for {#AltUpgradeFormat}{$TooltipData.ExtractData.ShieldDuration} second(s){#Prev}. Refreshes after {#BoldFormat}7 seconds{#BoldFormat}.",
-}, Order)
-
-local signoff_patroclus = sjson.to_object({
-	Id = "SignoffPatroclus",
-	DisplayName = "From Patroclus",
-}, Order)
-
-local signoff_patroclusmax = sjson.to_object({
-	Id = "SignoffPatroclus_Max",
-	DisplayName = "From {#AwardMaxFormat}Patroclus{#Prev}; you share an {#AwardMaxFormat}Enlightened Bond{#Prev}.{!Icons.ObjectiveSeparatorDark}}He passed bitterly from mortal life, but with you, rose above it all.",
-}, Order)
-
--- Icon JSON data
-local keepsakeicon_patroclus = sjson.to_object({
-	Name = "Broken_Spearpoint",
-	InheritFrom = "KeepsakeIcon",
-	FilePath = rom.path.combine(_PLUGIN.guid, "GUI\\Screens\\AwardMenu\\Broken_Spearpoint"),
-}, IconOrder)
-
-local keepsakemaxCorner_patroclus = sjson.to_object({
-	Name = "Keepsake_Patroclus_Corner",
-	InheritFrom = "KeepsakeMax_Corner",
-	FilePath = rom.path.combine(_PLUGIN.guid, "GUI\\Screens\\AwardMenu\\KeepsakeMaxGift\\Patroclus"),
-}, IconOrder)
-
-local keepsakemax_patroclus = sjson.to_object({
-	Name = "Keepsake_Patroclus",
-	InheritFrom = "KeepsakeMax",
-	FilePath = rom.path.combine(_PLUGIN.guid, "GUI\\Screens\\AwardMenu\\KeepsakeMaxGift\\Patroclus_02"),
-}, IconOrder)
-
--- Inserting into SJSON
-sjson.hook(TraitTextFile, function(data)
-	table.insert(data.Texts, keepsake_patroclus)
-	table.insert(data.Texts, keepsakerack_patroclus)
-	table.insert(data.Texts, signoff_patroclus)
-	table.insert(data.Texts, signoff_patroclusmax)
-end)
-
--- Insert for Icons
-sjson.hook(GUIBoonsVFXFile, function(data)
-	table.insert(data.Animations, keepsakeicon_patroclus)
-	table.insert(data.Animations, keepsakemaxCorner_patroclus)
-	table.insert(data.Animations, keepsakemax_patroclus)
-end)
---#endregion
+game.EffectData[mod.PatroclusInvulnerable] = {
+	ShowInvincububble = true,
+	DataProperties = {
+		Type = "INVULNERABLE",
+		Duration = 8,
+		Modifier = 1.0,
+		CanAffectInvulnerable = true,
+		FlashFrontFxWhenExpiring = false,
+		FlashBackFxWhenExpiring = false,
+	},
+}
 
 function mod.PatroclusRetaliate(unit, args, triggerArgs)
 	local victim = triggerArgs.Victim
@@ -209,5 +98,3 @@ function mod.PatroclusRetaliate(unit, args, triggerArgs)
 		TraitUIActivateTrait(traitData, { FlashOnActive = true, Duration = cooldown })
 	end
 end
-
-CreateKeepsake_Patroclus()

@@ -4,7 +4,8 @@
     "description": "",
     "version_number": "0.0.1",
     "dependencies": [
-        "Hell2Modding-Hell2Modding-1.0.44"
+        "Hell2Modding-Hell2Modding-1.0.44",
+        "zannc-GodsAPI-1.0.0"
     ],
     "website_url": "",
     "FullName": "zannc-SharedKeepsakePort"

@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+- DEV: Port all of `KeepsakePort's` code over to `SharedKeepsakePort`.
+- Add % increase to Hermes' Keepsake.
+- Remove extra "}" in Eurydice desc.
 
 ## [1.0.8] - 2025-12-08
 

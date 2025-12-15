@@ -5,7 +5,7 @@ schemaVersion = "0.0.1"
 [package]
 namespace = "zannc"
 name = "SharedKeepsakePort"
-versionNumber = "1.0.8"
+versionNumber = "2.0.0"
 description = "A mod which ports keepsakes from Hades 1 to Hades 2, mainly created to be used in conjuction with Zagreus' Journey, and KeepsakePort - which call this as a dependency"
 websiteUrl = "https://github.com/excellent-ae/zannc-SharedKeepsakePort"
 containsNsfwContent = false
@@ -17,6 +17,7 @@ LuaENVY-ENVY = "1.2.0"
 SGG_Modding-ReLoad = "1.0.2"
 SGG_Modding-SJSON = "1.0.0"
 SGG_Modding-Chalk = "2.1.1"
+zannc-GodsAPI = "2.0.7"
 zannc-KeepsakeExtender = "1.0.1"
 
 

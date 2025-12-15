@@ -1,81 +1,57 @@
-local mods = rom.mods
-local hades_Biomes = mods["NikkelM-Zagreus_Journey"]
+local maxReq = {}
+local minReq = {}
 
-function CreateKeepsake_Sisyphus()
-	-- Creating Keepsake Order
-	table.insert(game.ScreenData.KeepsakeRack.ItemOrder, "SisyphusVanillaKeepsake")
+if mod.hades_Biomes then
+	maxReq = {
+		PathTrue = { "GameState", "TextLinesRecord", "SisyphusGift09_A" },
+	}
+	minReq = {
+		PathTrue = { "GameState", "TextLinesRecord", "SisyphusGift01" },
+	}
+end
 
-	-- Creating Gift Data
-	if hades_Biomes then
-		game.GiftData.NPC_Sisyphus_01 = {
-			InheritFrom = { "DefaultGiftData" },
-			MaxedRequirement = {
-				{
-					PathTrue = { "GameState", "TextLinesRecord", "SisyphusGift09_A" },
-				},
-			},
-			MaxedIcon = "Keepsake_Sisyphus_Corner",
-			MaxedSticker = "Keepsake_Sisyphus",
-			[1] = {
-				GameStateRequirements = {
-					{
-						PathTrue = { "GameState", "TextLinesRecord", "SisyphusGift01" },
-					},
-				},
-				Gift = "SisyphusVanillaKeepsake",
-			},
-		}
-	else
-		game.GiftData.NPC_Sisyphus_01 = {
-			[1] = {
-				Gift = "SisyphusVanillaKeepsake",
-			},
-			InheritFrom = { "DefaultGiftData" },
-			Name = "SisyphusVanillaKeepsake",
-		}
-	end
+gods.CreateKeepsake({
+	characterName = "Sisyphus",
+	internalKeepsakeName = "SisyphusVanillaKeepsake",
 
-	-- Creating Keepsake Data
-	game.TraitData.SisyphusVanillaKeepsake = {
-		Icon = "Shattered_Shackle",
-		InheritFrom = { "GiftTrait" },
-		Name = "SisyphusVanillaKeepsake",
-		CustomTrayText = "SisyphusVanillaKeepsake_Tray",
+	RarityLevels = {
+		Common = { Multiplier = config.Sisyphus.a_KeepsakeCommon },
+		Rare = { Multiplier = config.Sisyphus.b_KeepsakeRare },
+		Epic = { Multiplier = config.Sisyphus.c_KeepsakeEpic },
+		Heroic = { Multiplier = config.Sisyphus.d_KeepsakeHeroic },
+	},
 
-		-- Always add these, so it SHUTS UP
-		ShowInHUD = true,
-		Ordered = true,
-		HUDScale = 0.435,
-		PriorityDisplay = true,
-		ChamberThresholds = { 25, 50 },
-		HideInRunHistory = true,
-		Slot = "Keepsake",
-		InfoBackingAnimation = "KeepsakeSlotBase",
-		RecordCacheOnEquip = true,
-		TraitOrderingValueCache = -1,
-		ActiveSlotOffsetIndex = 0,
-
-		FrameRarities = {
-			Common = "Frame_Keepsake_Rank1",
-			Rare = "Frame_Keepsake_Rank2",
-			Epic = "Frame_Keepsake_Rank3",
-			Heroic = "Frame_Keepsake_Rank4",
+	ExtractValues = {
+		{
+			Key = "ReportedWeaponMultiplier",
+			ExtractAs = "TooltipBonus",
+			Format = "PercentDelta",
+			SkipAutoExtract = true,
 		},
+	},
 
-		CustomRarityLevels = {
-			"TraitLevel_Keepsake1",
-			"TraitLevel_Keepsake2",
-			"TraitLevel_Keepsake3",
-			"TraitLevel_Keepsake4",
-		},
+	EquipSound = nil,
 
-		RarityLevels = {
-			Common = { Multiplier = config.Sisyphus.a_KeepsakeCommon },
-			Rare = { Multiplier = config.Sisyphus.b_KeepsakeRare },
-			Epic = { Multiplier = config.Sisyphus.c_KeepsakeEpic },
-			Heroic = { Multiplier = config.Sisyphus.d_KeepsakeHeroic },
-		},
+	Keepsake = {
+		displayName = "Shattered Shackle",
+		description = "Your {$Keywords.Attack}, {$Keywords.Special} and {$Keywords.Cast} each deal {#UpgradeFormat}{$TooltipData.ExtractData.TooltipBonus:P} {#Prev}damage while not empowered by a {$Keywords.GodBoon}.",
+		trayDescription = "Your {$Keywords.Attack}, {$Keywords.Special} and {$Keywords.Cast} each deal {#UpgradeFormat}{$TooltipData.ExtractData.TooltipBonus:P} {#Prev}damage while not empowered by a {$Keywords.GodBoon}.",
+		signoffMax = "From {#AwardMaxFormat}Sisyphus{#Prev}; you share a {#AwardMaxFormat}Rock-Solid Bond{#Prev}.{!Icons.ObjectiveSeparatorDark}If he can hoist a boulder on his own, he knows he can be of some support.",
+	},
 
+	Icons = {
+		iconPath = "GUI\\Screens\\AwardMenu\\Shattered_Shackle",
+		maxIcon = "GUI\\Screens\\AwardMenu\\KeepsakeMaxGift\\Sisyphus_02",
+		maxCornerIcon = "GUI\\Screens\\AwardMenu\\KeepsakeMaxGift\\Sisyphus",
+	},
+
+	customGiftData = {
+		-- customName = "NPC_Eurydice_01",
+		maxRequirement = maxReq,
+		minRequirement = minReq,
+	},
+
+	ExtraFields = {
 		AddOutgoingDamageModifiers = {
 			EmptySlotMultiplier = { BaseValue = 1.5, SourceIsMultiplier = true },
 			EmptySlotValidData = {
@@ -85,31 +61,8 @@ function CreateKeepsake_Sisyphus()
 			},
 			ReportValues = { ReportedWeaponMultiplier = "EmptySlotMultiplier" },
 		},
-
-		ExtractValues = {
-			{
-				Key = "ReportedWeaponMultiplier",
-				ExtractAs = "TooltipBonus",
-				Format = "PercentDelta",
-				SkipAutoExtract = true,
-			},
-		},
-
-		SignOffData = {
-			{
-				GameStateRequirements = {
-					{
-						PathTrue = { "GameState", "TextLinesRecord", "SisyphusGift09_A" },
-					},
-				},
-				Text = "SignoffSisyphus_Max",
-			},
-			{
-				Text = "SignoffSisyphus",
-			},
-		},
-	}
-end
+	},
+})
 
 -- =================================================
 --                 Sisyphus SJSON
