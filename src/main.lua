@@ -69,7 +69,6 @@ local function on_reload()
 end
 
 local loader = reload.auto_single()
-
 modutil.once_loaded.game(function()
 	if config.enabled == false then
 		return
@@ -114,17 +113,11 @@ modutil.once_loaded.game(function()
 	loader.load(on_ready, on_reload)
 
 	local hermes_helptext_sjson = sjson.to_object({
-		Id = "zannc-SharedKeepsakePort-Hint_FastClearDamageBonus",
-		DisplayName = "Clear! {#UpgradeFormat}{$TempTextData.ExtractData.TooltipFastClearDodgeBonus:P}",
-	}, mod.HelpTextOrder)
-
-	local thanatos_helptext_sjson = sjson.to_object({
-		Id = " Hint_PerfectClearDamageBonus",
-		DisplayName = "Clear! {#UpgradeFormat}{$TempTextData.ExtractData.TooltipPerfectClearBonus:P}",
-	}, mod.HelpTextOrder)
+		Id = _PLUGIN.guid .. "-Hint_ReportedxBonus",
+		DisplayName = "Clear! {#UpgradeFormat}{$TempTextData.Amount:P}",
+	}, mod.Order)
 
 	sjson.hook(mod.HelpTextFile, function(data)
 		table.insert(data.Texts, hermes_helptext_sjson)
-		table.insert(data.Texts, thanatos_helptext_sjson)
 	end)
 end)

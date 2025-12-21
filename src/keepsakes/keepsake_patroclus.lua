@@ -26,6 +26,7 @@ gods.CreateKeepsake({
 			Key = "ReportedDuration",
 			ExtractAs = "ShieldDuration",
 			Format = "SpeedModifiedDuration",
+			DecimalPlaces = 2,
 			-- SkipAutoExtract = true,
 		},
 	},
@@ -36,7 +37,7 @@ gods.CreateKeepsake({
 		displayName = "Broken Spearpoint",
 		description = "After taking damage, become {$Keywords.Invulnerable} for {#AltUpgradeFormat}{$TooltipData.ExtractData.ShieldDuration} second(s){#Prev}. Refreshes after {#BoldFormat}7 seconds{#BoldFormat}.",
 		trayDescription = "After taking damage, become {$Keywords.Invulnerable} for {#AltUpgradeFormat}{$TooltipData.ExtractData.ShieldDuration} second(s){#Prev}. Refreshes after {#BoldFormat}7 seconds{#BoldFormat}.",
-		signoffMax = "From {#AwardMaxFormat}Patroclus{#Prev}; you share an {#AwardMaxFormat}Enlightened Bond{#Prev}.{!Icons.ObjectiveSeparatorDark}}He passed bitterly from mortal life, but with you, rose above it all.",
+		signoffMax = "From {#AwardMaxFormat}Patroclus{#Prev}; you share an {#AwardMaxFormat}Enlightened Bond{#Prev}.{!Icons.ObjectiveSeparatorDark}He passed bitterly from mortal life, but with you, rose above it all.",
 	},
 
 	Icons = {
@@ -52,9 +53,9 @@ gods.CreateKeepsake({
 
 	ExtraFields = {
 		OnSelfDamagedFunction = {
-			Name = mod .. "." .. "PatroclusRetaliate",
+			Name = _PLUGIN.guid .. "." .. "PatroclusRetaliate",
 			FunctionArgs = {
-				EffectName = mod .. "PatroclusInvulnerable",
+				EffectName = _PLUGIN.guid .. "PatroclusInvulnerable",
 
 				Duration = { BaseValue = 1.0 },
 				Cooldown = 7,
@@ -67,7 +68,7 @@ gods.CreateKeepsake({
 	},
 })
 
-game.EffectData[mod.PatroclusInvulnerable] = {
+game.EffectData[_PLUGIN.guid .. "PatroclusInvulnerable"] = {
 	ShowInvincububble = true,
 	DataProperties = {
 		Type = "INVULNERABLE",

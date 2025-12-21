@@ -1,13 +1,15 @@
 local maxReq = {}
+local minReq = {}
 if mod.keepsakePortConfig.enableGifting then
 	maxReq = {
 		PathTrue = { "GameState", "TextLinesRecord", "HermesGift08" },
 	}
+	minReq = {
+		PathTrue = { "GameState", "TextLinesRecord", "HermesGift01" },
+	}
 end
-local minReq = {
-	PathTrue = { "GameState", "TextLinesRecord", "HermesGift01" },
-}
 
+local guid = _PLUGIN.guid
 gods.CreateKeepsake({
 	characterName = "Hermes",
 	internalKeepsakeName = "FastClearDodgeBonusKeepsake",
@@ -22,7 +24,7 @@ gods.CreateKeepsake({
 	ExtractValues = {
 		{
 			Key = "FastClearDodgeBonus",
-			ExtractAs = "TooltipFastClearDodgeBonus",
+			ExtractAs = guid .. "-TooltipFastClearDodgeBonus", -- Don't really think i need to prefix this? since you would specifically call it?
 			Format = "Percent",
 			DecimalPlaces = 2,
 		},
@@ -38,7 +40,7 @@ gods.CreateKeepsake({
 
 	Keepsake = {
 		displayName = "Evergreen Acorn",
-		description = "Gain {#UpgradeFormat}{$TooltipData.ExtractData.TooltipFastClearDodgeBonus:P} {#Prev}{$Keywords.Dodge} chance and {#BoldFormatGraft}move {#Prev}speed each time you quickly clear an {$Keywords.EncounterAlt}.",
+		description = "Gain {#UpgradeFormat}{$TooltipData.ExtractData." .. guid .. "-TooltipFastClearDodgeBonus:P}{#Prev}{$Keywords.Dodge} chance and {#BoldFormatGraft}move {#Prev}speed each time you quickly clear an {$Keywords.EncounterAlt}.",
 		trayDescription = "Gain greater {$Keywords.Dodge} chance and {#BoldFormatGraft}move {#Prev}speed each time you quickly clear an {$Keywords.EncounterAlt}.\n{#StatFormat}Dodge Chance & Move Speed: {#UpgradeFormat}{$TooltipData.ExtractData.TooltipAccumulatedBonus:P}{#Prev}",
 		signoffMax = "From {#AwardMaxFormat}Hermes{#Prev}; you share a {#AwardMaxFormat}Quicksilver Bond{#Prev}.{!Icons.ObjectiveSeparatorDark}His carefree nature and his haste never betray his true capacity.",
 	},
@@ -68,6 +70,7 @@ gods.CreateKeepsake({
 		},
 
 		AccumulatedDodgeBonus = 0,
+		ReportedxBonus = 1,
 		CustomLabel = {}, -- lifehack
 	},
 })
@@ -116,7 +119,6 @@ game.EncounterData.CapturePoint.FastClearThreshold = 55 -- Asphodel?
 game.EncounterData.GeneratedAnomalyBase.FastClearThreshold = 55 -- Asphodel?
 
 -- =================================================
-
 --               Underground Regions
 -- =================================================
 

@@ -1,9 +1,14 @@
 # Changelog
 
 ## [Unreleased]
-- DEV: Port all of `KeepsakePort's` code over to `SharedKeepsakePort`.
 - Add % increase to Hermes' Keepsake.
-- Remove extra "}" in Eurydice desc.
+- Remove extra "}" in multiple descriptions.
+- Added decimal places for invulnerability duration in Patroclus' keepsake.
+- DEV: Port all of `KeepsakePort's` code over to `SharedKeepsakePort`.
+- DEV: Code Rewrites.
+- DEV: Remove Bonus Dodge/Speed when unequipping Hermes' Keepsake.
+- DEV: Move from reload, guid-prefixed functions.
+- DEV: Fix Min/Max Requirements.
 
 ## [1.0.8] - 2025-12-08
 

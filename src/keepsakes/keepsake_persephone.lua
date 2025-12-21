@@ -1,12 +1,13 @@
 local maxReq = {}
+local minReq = {}
 if mod.keepsakePortConfig.enableGifting then
 	maxReq = {
 		PathTrue = { "GameState", "TextLinesRecord", "HadesWithPersephoneGift06" },
 	}
+	minReq = {
+		PathTrue = { "GameState", "TextLinesRecord", "HadesWithPersephoneGift01" },
+	}
 end
-local minReq = {
-	PathTrue = { "GameState", "TextLinesRecord", "HadesWithPersephoneGift01" },
-}
 
 gods.CreateKeepsake({
 	characterName = "Persephone",

@@ -10,9 +10,10 @@ if mod.hades_Biomes then
 	}
 end
 
+local guid = _PLUGIN.guid
 gods.CreateKeepsake({
 	characterName = "Thanatos",
-	internalKeepsakeName = "ShieldBossKeepsake",
+	internalKeepsakeName = "PerfectClearDamageBonusKeepsake",
 
 	RarityLevels = {
 		Common = { Multiplier = config.Thanatos.a_KeepsakeCommon },
@@ -24,7 +25,7 @@ gods.CreateKeepsake({
 	ExtractValues = {
 		{
 			Key = "PerfectClearDamageBonus",
-			ExtractAs = "TooltipPerfectClearBonus",
+			ExtractAs = guid .. "TooltipPerfectClearBonus", -- Don't really think i need to prefix this? since you would specifically call it?
 			Format = "PercentDelta",
 			DecimalPlaces = 1,
 		},
@@ -40,7 +41,7 @@ gods.CreateKeepsake({
 
 	Keepsake = {
 		displayName = "Evergreen Acorn",
-		description = "Gain {#UpgradeFormat}{$TooltipData.ExtractData.TooltipPerfectClearBonus:P} {#Prev}increased damage each time you clear an {$Keywords.EncounterAlt} without taking damage.",
+		description = "Gain {#UpgradeFormat}{$TooltipData.ExtractData." .. guid .. "-TooltipPerfectClearBonus:P} {#Prev}increased damage each time you clear an {$Keywords.EncounterAlt} without taking damage.",
 		trayDescription = "Gain bonus damage each time you clear an {$Keywords.EncounterAlt} without taking damage.\n{#StatFormat}Bonus Damage: {#UpgradeFormat}{$TooltipData.ExtractData.TooltipAccumulatedBonus:P}{#Prev}",
 		signoffMax = "From {#AwardMaxFormat}Thanatos{#Prev}; you share a {#AwardMaxFormat}Undying Bond{#Prev}.{!Icons.ObjectiveSeparatorDark}With whom should Death belong, if not with Blood, with Life?",
 	},
@@ -66,6 +67,7 @@ gods.CreateKeepsake({
 			UseTraitValue = "AccumulatedDamageBonus",
 		},
 		AccumulatedDamageBonus = 1,
+		ReportedxBonus = 1,
 		CustomLabel = {}, -- lifehack
 	},
 })
