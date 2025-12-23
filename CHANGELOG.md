@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Unreleased]
+- Fix nil thrown error when going into non combat rooms.
 
 ## [1.1.1] - 2025-12-23
 

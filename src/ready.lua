@@ -66,8 +66,11 @@ modutil.mod.Path.Wrap("EndEncounterEffects", function(base, currentRun, currentR
 	-- function FieldsEncounterEndPresentation( encounter, currentRun )
 	-- function CheckForEncounterEnemiesDead( eventSource, args )
 
-	if currentEncounter == currentRoom.Encounter or currentEncounter == game.MapState.EncounterOverride then
-		currentEncounter.ClearTime = currentRun.GameplayTime - currentEncounter.StartTime
+	if currentEncounter == currentRoom.Encounter or currentEncounter == game.MapState.EncounterOverride and currentRoom.Encounter.EncounterType ~= "NonCombat" then
+		currentEncounter.ClearTime = nil
+		if currentEncounter.StartTime then
+			currentEncounter.ClearTime = currentRun.GameplayTime - currentEncounter.StartTime
+		end
 
 		-- For Hermes in fields, very crude but hopefully works, makes it so if encounter has threshold
 		-- calculate the clear time, else set clear time to arbritrary high number to fail encounter automatically (done to combat NPC rooms)
@@ -109,7 +112,7 @@ modutil.mod.Path.Wrap("EndEncounterEffects", function(base, currentRun, currentR
 
 		-- if not currentRoom.BlockClearRewards then
 		for k, traitData in pairs(CurrentRun.Hero.Traits) do
-			if not currentEncounter.PlayerTookDamage and traitData.PerfectClearDamageBonus and currentRoom.Encounter.EncounterType ~= "NonCombat" then
+			if not currentEncounter.PlayerTookDamage and traitData.PerfectClearDamageBonus then
 				traitData.AccumulatedDamageBonus = traitData.AccumulatedDamageBonus + (traitData.PerfectClearDamageBonus - 1)
 				mod.PerfectClearTraitSuccessPresentation(traitData)
 				UpdateTraitNumber(GetHeroTrait(mod.thanaKeepsakeName))

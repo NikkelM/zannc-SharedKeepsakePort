@@ -40,7 +40,7 @@ gods.CreateKeepsake({
 
 	Keepsake = {
 		displayName = "Lambent Plume",
-		description = "Gain {#UpgradeFormat}{$TooltipData.ExtractData." .. guid .. "-TooltipFastClearDodgeBonus:P}{#Prev}{$Keywords.Dodge} chance and {#BoldFormatGraft}move {#Prev}speed each time you quickly clear an {$Keywords.EncounterAlt}.",
+		description = "Gain {#UpgradeFormat}{$TooltipData.ExtractData." .. guid .. "-TooltipFastClearDodgeBonus:P} {#Prev}{$Keywords.Dodge}chance and {#BoldFormatGraft}move {#Prev}speed each time you quickly clear an {$Keywords.EncounterAlt}.",
 		trayDescription = "Gain greater {$Keywords.Dodge} chance and {#BoldFormatGraft}move {#Prev}speed each time you quickly clear an {$Keywords.EncounterAlt}.\n{#StatFormat}Dodge Chance & Move Speed: {#UpgradeFormat}{$TooltipData.ExtractData.TooltipAccumulatedBonus:P}{#Prev}",
 		signoffMax = "From {#AwardMaxFormat}Hermes{#Prev}; you share a {#AwardMaxFormat}Quicksilver Bond{#Prev}.{!Icons.ObjectiveSeparatorDark}His carefree nature and his haste never betray his true capacity.",
 	},
