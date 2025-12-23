@@ -39,7 +39,7 @@ gods.CreateKeepsake({
 	EquipSound = "/SFX/Menu Sounds/KeepsakeHermesDroplet",
 
 	Keepsake = {
-		displayName = "Evergreen Acorn",
+		displayName = "Lambent Plume",
 		description = "Gain {#UpgradeFormat}{$TooltipData.ExtractData." .. guid .. "-TooltipFastClearDodgeBonus:P}{#Prev}{$Keywords.Dodge} chance and {#BoldFormatGraft}move {#Prev}speed each time you quickly clear an {$Keywords.EncounterAlt}.",
 		trayDescription = "Gain greater {$Keywords.Dodge} chance and {#BoldFormatGraft}move {#Prev}speed each time you quickly clear an {$Keywords.EncounterAlt}.\n{#StatFormat}Dodge Chance & Move Speed: {#UpgradeFormat}{$TooltipData.ExtractData.TooltipAccumulatedBonus:P}{#Prev}",
 		signoffMax = "From {#AwardMaxFormat}Hermes{#Prev}; you share a {#AwardMaxFormat}Quicksilver Bond{#Prev}.{!Icons.ObjectiveSeparatorDark}His carefree nature and his haste never betray his true capacity.",
@@ -138,8 +138,9 @@ game.EncounterData.BossScylla01.FastClearThreshold = 85 -- Scylla Encounters
 game.EncounterData.GeneratedAnomalyBase.FastClearThreshold = 60 -- Base Encounter
 
 -- Fields Region
-game.EncounterData.GeneratedH_Passive.FastClearThreshold = 40 -- Field Cage Encounters
-game.EncounterData.GeneratedH_PassiveSmall.FastClearThreshold = 30 -- Small Field Cage Encounters
+-- game.EncounterData.GeneratedH_Passive.FastClearThreshold = 40 -- Field Cage Encounters
+-- game.EncounterData.GeneratedH_PassiveSmall.FastClearThreshold = 30 -- Small Field Cage Encounters
+game.EncounterData.GeneratedH.FastClearThreshold = 30 -- Field Cage Encounters
 game.EncounterData.MiniBossLamia.FastClearThreshold = 55 -- Lamia/Snake Thing Encounters
 game.EncounterData.MiniBossVampire.FastClearThreshold = 70 -- Vampire Thing Encounters
 game.EncounterData.BossInfestedCerberus01.FastClearThreshold = 100 -- Cerberus Boss Encounters

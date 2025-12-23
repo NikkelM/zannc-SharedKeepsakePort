@@ -13,24 +13,74 @@ mod.patroKeepsakeName = gods.GetInternalKeepsakeName("ShieldAfterHitKeepsake")
 mod.thanaKeepsakeName = gods.GetInternalKeepsakeName("PerfectClearDamageBonusKeepsake")
 mod.hermesKeepsakeName = gods.GetInternalKeepsakeName("FastClearDodgeBonusKeepsake")
 
+modutil.mod.Path.Wrap("StartEncounterEffects", function(base, encounter)
+	local currentRun = game.CurrentRun
+	local currentRoom = currentRun.CurrentRoom
+
+	--TODO Check this code.
+	encounter = encounter or CurrentRun.CurrentRoom.Encounter
+	encounter.StartTime = CurrentRun.GameplayTime
+
+	-- Assign a start counter to all active encounters, specifically for Hermes boon
+	-- if currentRoom.ActiveEncounters ~= nil then
+	-- 	for k, encounter in pairs(currentRoom.ActiveEncounters) do
+	-- 		encounter.StartTime = _worldTime
+	-- 	end
+	-- end
+
+	if HeroHasTrait(mod.patroKeepsakeName) then
+		local traitData = GetHeroTrait(mod.patroKeepsakeName)
+		if
+			traitData.OnSelfDamagedFunction
+			and traitData.OnSelfDamagedFunction.FunctionArgs
+			and traitData.OnSelfDamagedFunction.FunctionArgs.Cooldown
+			and CheckCooldownNoTrigger("PatroclusInvulnerability" .. CurrentRun.Hero.ObjectId, traitData.OnSelfDamagedFunction.FunctionArgs.Cooldown, true)
+		then
+			TraitUIActivateTrait(traitData)
+		end
+	end
+
+	if HeroHasTrait(mod.thanaKeepsakeName) then
+		local traitData = GetHeroTrait(mod.thanaKeepsakeName)
+		if currentRoom and not game.CurrentRun.Hero.IsDead and currentRoom.Encounter ~= nil and currentRoom.Encounter.EncounterType ~= "NonCombat" and not currentRoom.Encounter.Completed and not currentRoom.Encounter.PlayerTookDamage then
+			TraitUIActivateTrait(traitData)
+		end
+	end
+
+	if HeroHasTrait(mod.hermesKeepsakeName) then
+		local traitData = GetHeroTrait(mod.hermesKeepsakeName)
+		if currentRoom and not game.CurrentRun.Hero.IsDead and currentRoom.Encounter ~= nil and currentRoom.Encounter.EncounterType ~= "NonCombat" and not currentRoom.Encounter.Completed then
+			mod.SetupDodgeBonus(currentRoom.Encounter, traitData)
+		end
+	end
+	base(encounter)
+end)
+
 modutil.mod.Path.Wrap("EndEncounterEffects", function(base, currentRun, currentRoom, currentEncounter)
 	if GetHeroTrait(mod.patroKeepsakeName) then
 		TraitUIDeactivateTrait(GetHeroTrait(mod.patroKeepsakeName))
 	end
 
+	-- thinking I could check for all to be completed, maybe through the thread which opens the doors
+	-- ExitsDontRequireCompleted
+	-- function FieldsEncounterEndPresentation( encounter, currentRun )
+	-- function CheckForEncounterEnemiesDead( eventSource, args )
+
 	if currentEncounter == currentRoom.Encounter or currentEncounter == game.MapState.EncounterOverride then
+		currentEncounter.ClearTime = currentRun.GameplayTime - currentEncounter.StartTime
+
 		-- For Hermes in fields, very crude but hopefully works, makes it so if encounter has threshold
 		-- calculate the clear time, else set clear time to arbritrary high number to fail encounter automatically (done to combat NPC rooms)
 		-- if currentEncounter.FastClearThreshold then
-		if currentEncounter.FastClearThreshold then
-			for k, encounter in pairs(CurrentRun.CurrentRoom.ActiveEncounters) do
-				-- Check clear time, used later in original function
-				encounter.ClearTime = currentRun.GameplayTime - encounter.StartTime
-			end
-		else
-			-- If no threshold, either its undefined, broken, or NPC/NonCombat room, set clear time to 200 to auto fail hermes
-			currentEncounter.ClearTime = 200
-		end
+		-- if currentEncounter.FastClearThreshold then
+		-- 	for k, encounter in pairs(CurrentRun.CurrentRoom.ActiveEncounters) do
+		-- 		-- Check clear time, used later in original function
+		-- 		encounter.ClearTime = currentRun.GameplayTime - encounter.StartTime
+		-- 	end
+		-- else
+		-- 	-- If no threshold, either its undefined, broken, or NPC/NonCombat room, set clear time to 200 to auto fail hermes
+		-- 	currentEncounter.ClearTime = 200
+		-- end
 
 		for k, traitData in pairs(CurrentRun.Hero.Traits) do
 			if traitData.FastClearThreshold then
@@ -46,6 +96,8 @@ modutil.mod.Path.Wrap("EndEncounterEffects", function(base, currentRun, currentR
 					SetUnitProperty({ Property = "Speed", Value = 1 + traitData.AccumulatedDodgeBonus, ValueChangeType = "Multiply", DestinationId = CurrentRun.Hero.ObjectId })
 					mod.FastClearTraitSuccessPresentation(traitData)
 					UpdateTraitNumber(GetHeroTrait(mod.hermesKeepsakeName))
+				else
+					TraitUIDeactivateTrait(GetHeroTrait(mod.hermesKeepsakeName))
 				end
 			end
 		end
@@ -91,49 +143,34 @@ modutil.mod.Path.Wrap("DamageHero", function(base, victim, triggerArgs)
 		end
 	end
 	base(victim, triggerArgs)
+
+	local currentHealth = game.CurrentRun.Hero.Health
+	-- local currentHealthFraction = victim.Health / victim.MaxHealth
+	local lowHealthText = {}
+	for i, traitData in ipairs(CurrentRun.Hero.Traits) do
+		local thresholdData = traitData.LowHealthThresholdText
+		if thresholdData ~= nil and currentHealth / CurrentRun.Hero.MaxHealth <= thresholdData.PercentThreshold then -- and (currentHealth + triggerArgs.DamageAmount) / CurrentRun.Hero.MaxHealth > thresholdData.PercentThreshold
+			lowHealthText[traitData.Name] = thresholdData.Text
+			TraitUIActivateTrait(traitData)
+		end
+	end
+	if not IsEmpty(lowHealthText) and not triggerArgs.Silent then
+		thread(HighHealthCombatTextPresentation, victim.ObjectId, lowHealthText)
+	end
 end)
 
-modutil.mod.Path.Wrap("StartEncounterEffects", function(base, encounter)
-	local currentRun = game.CurrentRun
-	local currentRoom = currentRun.CurrentRoom
-
-	--TODO Check this code.
-	encounter = encounter or CurrentRun.CurrentRoom.Encounter
-	encounter.StartTime = CurrentRun.GameplayTime
-
-	-- Assign a start counter to all active encounters, specifically for Hermes boon
-	-- if currentRoom.ActiveEncounters ~= nil then
-	-- 	for k, encounter in pairs(currentRoom.ActiveEncounters) do
-	-- 		encounter.StartTime = _worldTime
-	-- 	end
-	-- end
-
-	if HeroHasTrait(mod.patroKeepsakeName) then
-		local traitData = GetHeroTrait(mod.patroKeepsakeName)
-		if
-			traitData.OnSelfDamagedFunction
-			and traitData.OnSelfDamagedFunction.FunctionArgs
-			and traitData.OnSelfDamagedFunction.FunctionArgs.Cooldown
-			and CheckCooldownNoTrigger("PatroclusInvulnerability" .. CurrentRun.Hero.ObjectId, traitData.OnSelfDamagedFunction.FunctionArgs.Cooldown, true)
-		then
-			TraitUIActivateTrait(traitData, args)
+modutil.mod.Path.Wrap("Heal", function(base, victim, triggerArgs)
+	base(victim, triggerArgs)
+	local prevHealth = victim.Health
+	triggerArgs.ActualHealAmount = round(victim.Health - prevHealth)
+	if victim == CurrentRun.Hero then
+		for i, traitData in pairs(CurrentRun.Hero.Traits) do
+			local thresholdData = traitData.LowHealthThresholdText
+			if thresholdData ~= nil and CurrentRun.Hero.Health / CurrentRun.Hero.MaxHealth > thresholdData.PercentThreshold then -- and (CurrentRun.Hero.Health - triggerArgs.ActualHealAmount) / CurrentRun.Hero.MaxHealth <= thresholdData.PercentThreshold
+				TraitUIDeactivateTrait(traitData)
+			end
 		end
 	end
-
-	if HeroHasTrait(mod.thanaKeepsakeName) then
-		local traitData = GetHeroTrait(mod.thanaKeepsakeName)
-		if currentRoom and not game.CurrentRun.Hero.IsDead and currentRoom.Encounter ~= nil and currentRoom.Encounter.EncounterType ~= "NonCombat" and not currentRoom.Encounter.Completed and not currentRoom.Encounter.PlayerTookDamage then
-			TraitUIActivateTrait(traitData, args)
-		end
-	end
-
-	if HeroHasTrait(mod.hermesKeepsakeName) then
-		local traitData = GetHeroTrait(mod.hermesKeepsakeName)
-		if currentRoom and not game.CurrentRun.Hero.IsDead and currentRoom.Encounter ~= nil and currentRoom.Encounter.EncounterType ~= "NonCombat" and not currentRoom.Encounter.Completed then
-			mod.SetupDodgeBonus(currentRoom.Encounter, traitData)
-		end
-	end
-	base(encounter)
 end)
 
 modutil.mod.Path.Wrap("TraitUICreateText", function(base, trait, args)
@@ -190,7 +227,6 @@ end)
 
 --#region hermes fail/success/thread
 local function FastClearTraitFailedPresentation(traitData)
-	rom.log.warning("FastClearTraitFailedPresentation")
 	TraitUIDeactivateTrait(traitData)
 	PlaySound({ Name = "/SFX/ThanatosHermesKeepsakeFail" })
 	Flash({ Speed = 2, MinFraction = 0, MaxFraction = 0.8, Color = Color.Black, ExpireAfterCycle = true })
@@ -198,7 +234,6 @@ local function FastClearTraitFailedPresentation(traitData)
 end
 
 local function FastClearThread(clearTimeThreshold, dodgeTraitData)
-	rom.log.warning("FastClearThread")
 	wait(clearTimeThreshold, RoomThreadName)
 	if CurrentRun and CurrentRun.CurrentRoom and CurrentRun.CurrentRoom.Encounter and not CurrentRun.CurrentRoom.Encounter.Completed and not CurrentRun.CurrentRoom.Encounter.BossKillPresentation then
 		FastClearTraitFailedPresentation(dodgeTraitData)
@@ -206,7 +241,6 @@ local function FastClearThread(clearTimeThreshold, dodgeTraitData)
 end
 
 local function FastClearTraitStartPresentation(clearTimeThreshold, traitData)
-	rom.log.warning("FastClearTraitStartPresentation")
 	PlaySound({ Name = "/EmptyCue" })
 	TraitUIActivateTrait(traitData, { CustomAnimation = "ActiveTraitSingle_Custom", PlaySpeed = 30 / clearTimeThreshold })
 end

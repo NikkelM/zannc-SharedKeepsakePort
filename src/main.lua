@@ -45,7 +45,7 @@ local function on_ready()
 		"Hermes",
 		"Persephone",
 		-- "Chaos",
-		-- "Megaera",
+		"Megaera",
 		-- "Nyx",
 		--*SharedKeepsakePort
 		"Sisyphus",
@@ -112,12 +112,17 @@ modutil.once_loaded.game(function()
 
 	loader.load(on_ready, on_reload)
 
-	local hermes_helptext_sjson = sjson.to_object({
+	local than_hermes_helptext_sjson = sjson.to_object({
 		Id = _PLUGIN.guid .. "-Hint_ReportedxBonus",
 		DisplayName = "Clear! {#UpgradeFormat}{$TempTextData.Amount:P}",
 	}, mod.Order)
+	local meg_helptext_sjson = sjson.to_object({
+		Id = _PLUGIN.guid .. "-Hint_LowHealthDamageTrait",
+		DisplayName = "Skull Earring!",
+	}, mod.Order)
 
 	sjson.hook(mod.HelpTextFile, function(data)
-		table.insert(data.Texts, hermes_helptext_sjson)
+		table.insert(data.Texts, than_hermes_helptext_sjson)
+		table.insert(data.Texts, meg_helptext_sjson)
 	end)
 end)

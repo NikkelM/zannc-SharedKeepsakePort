@@ -25,7 +25,7 @@ gods.CreateKeepsake({
 	ExtractValues = {
 		{
 			Key = "PerfectClearDamageBonus",
-			ExtractAs = guid .. "TooltipPerfectClearBonus", -- Don't really think i need to prefix this? since you would specifically call it?
+			ExtractAs = guid .. "-TooltipPerfectClearBonus", -- Don't really think i need to prefix this? since you would specifically call it?
 			Format = "PercentDelta",
 			DecimalPlaces = 1,
 		},
@@ -40,7 +40,7 @@ gods.CreateKeepsake({
 	EquipSound = "/SFX/Menu Sounds/KeepsakeEurydiceAcorn",
 
 	Keepsake = {
-		displayName = "Evergreen Acorn",
+		displayName = "Pierced Butterfly",
 		description = "Gain {#UpgradeFormat}{$TooltipData.ExtractData." .. guid .. "-TooltipPerfectClearBonus:P} {#Prev}increased damage each time you clear an {$Keywords.EncounterAlt} without taking damage.",
 		trayDescription = "Gain bonus damage each time you clear an {$Keywords.EncounterAlt} without taking damage.\n{#StatFormat}Bonus Damage: {#UpgradeFormat}{$TooltipData.ExtractData.TooltipAccumulatedBonus:P}{#Prev}",
 		signoffMax = "From {#AwardMaxFormat}Thanatos{#Prev}; you share a {#AwardMaxFormat}Undying Bond{#Prev}.{!Icons.ObjectiveSeparatorDark}With whom should Death belong, if not with Blood, with Life?",
