@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+
+## [1.1.2] - 2025-12-23
+
 - Fix nil thrown error when going into non combat rooms.
 
 ## [1.1.1] - 2025-12-23
@@ -57,7 +60,8 @@
 
 - Initial Release.
 
-[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.1...HEAD
+[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.2...HEAD
+[1.1.2]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.8...1.1.0
 [1.0.8]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.7...1.0.8
