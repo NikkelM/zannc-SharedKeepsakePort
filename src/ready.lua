@@ -66,10 +66,13 @@ modutil.mod.Path.Wrap("EndEncounterEffects", function(base, currentRun, currentR
 	-- function FieldsEncounterEndPresentation( encounter, currentRun )
 	-- function CheckForEncounterEnemiesDead( eventSource, args )
 
-	if currentEncounter == currentRoom.Encounter or currentEncounter == game.MapState.EncounterOverride and currentRoom.Encounter.EncounterType ~= "NonCombat" then
+	if currentEncounter == currentRoom.Encounter and currentEncounter.EncounterType ~= "NonCombat" or currentEncounter == game.MapState.EncounterOverride then -- and not currentRoom.TimerBlock
 		currentEncounter.ClearTime = nil
 		if currentEncounter.StartTime then
 			currentEncounter.ClearTime = currentRun.GameplayTime - currentEncounter.StartTime
+		else
+			currentEncounter.ClearTime = 999 --random high number
+			rom.log.warning("StartTime was nil for encounter " .. (currentEncounter.Name or "nil"))
 		end
 
 		-- For Hermes in fields, very crude but hopefully works, makes it so if encounter has threshold
