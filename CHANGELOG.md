@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+
+## [1.1.1] - 2025-12-23
+
 - Fix nil thrown error when KeepsakePort isn't installed.
 
 ## [1.1.0] - 2025-12-23
@@ -53,7 +56,8 @@
 
 - Initial Release.
 
-[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.0...HEAD
+[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.1...HEAD
+[1.1.1]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.8...1.1.0
 [1.0.8]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.7...1.0.8
 [1.0.7]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.6...1.0.7
