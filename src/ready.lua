@@ -297,11 +297,11 @@ end
 function mod.PerfectClearTraitSuccessPresentation(traitData)
 	TraitUIDeactivateTrait(traitData)
 	wait(0.50)
-	-- local existingTraitData = GetExistingUITrait(traitData)
-	-- if existingTraitData ~= nil and existingTraitData.AnchorId ~= nil then
-	CreateAnimation({ Name = "KeepsakeSparkleEmitter", DestinationId = existingTraitData.AnchorId, GroupName = "Overlay" })
-	PlaySound({ Name = existingTraitData.EquipSound or "/Leftovers/Menu Sounds/TalismanPowderDownLEGENDARY", Id = CurrentRun.Hero.ObjectId })
-	-- end
+	local existingTraitData = GetExistingUITrait(traitData)
+	if existingTraitData ~= nil and existingTraitData.AnchorId ~= nil then
+		CreateAnimation({ Name = "KeepsakeSparkleEmitter", DestinationId = existingTraitData.AnchorId, GroupName = "Overlay" })
+		PlaySound({ Name = existingTraitData.EquipSound or "/Leftovers/Menu Sounds/TalismanPowderDownLEGENDARY", Id = CurrentRun.Hero.ObjectId })
+	end
 	CreateAnimation({ Name = "KeepsakeLevelUpFlare", DestinationId = CurrentRun.Hero.ObjectId, Scale = 1.0 })
 	local soundId = PlaySound({ Name = "/SFX/ThanatosAttackBell", Id = CurrentRun.Hero.ObjectId })
 	SetVolume({ Id = soundId, Value = 0.3 })

@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Unreleased]
+- Fix nil thrown error when completing rooms with Thanatos' Keepsake.
 
 ## [1.1.2] - 2025-12-23
 
