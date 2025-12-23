@@ -58,14 +58,14 @@ local function on_ready()
 		if config[name] and config[name].Enabled then
 			import("keepsakes/keepsake_" .. string.lower(name) .. ".lua")
 		end
-		if mod.keepsakePortConfig[name] and mod.keepsakePortConfig[name].Enabled then
+		if mod.keepsakePortConfig and mod.keepsakePortConfig[name] and mod.keepsakePortConfig[name].Enabled then
 			import("keepsakes/keepsake_" .. string.lower(name) .. ".lua")
 		end
 	end
 end
 
 local function on_reload()
-	import("reload.lua")
+	-- import("reload.lua")
 end
 
 local loader = reload.auto_single()

@@ -1,3 +1,0 @@
----@diagnostic disable: undefined-global
----@meta _
----@diagnostic disable: lowercase-global

@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Unreleased]
+- Fix nil thrown error when KeepsakePort isn't installed.
 
 ## [1.1.0] - 2025-12-23
 
