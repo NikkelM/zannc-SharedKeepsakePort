@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+
+## [1.1.0] - 2025-12-23
+
 - Added Megaera's Keepsake.
 - Add % increase to Hermes' Keepsake.
 - Remove extra "}" in multiple descriptions.
@@ -49,7 +52,8 @@
 
 - Initial Release.
 
-[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.8...HEAD
+[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.8...1.1.0
 [1.0.8]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.7...1.0.8
 [1.0.7]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.6...1.0.7
 [1.0.6]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.0.5...1.0.6
