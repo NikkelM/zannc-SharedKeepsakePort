@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+
+## [1.1.4] - 2026-01-01
+
 - Fix "Keepsake Received" popup missing when receiving keepsakes in Zagreus' Journey.
 
 ## [1.1.3] - 2025-12-23
@@ -65,7 +68,8 @@
 
 - Initial Release.
 
-[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.3...HEAD
+[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.4...HEAD
+[1.1.4]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.3...1.1.4
 [1.1.3]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.2...1.1.3
 [1.1.2]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.0...1.1.1
