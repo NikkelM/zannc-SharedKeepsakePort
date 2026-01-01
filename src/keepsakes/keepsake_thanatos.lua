@@ -53,6 +53,7 @@ gods.CreateKeepsake({
 	},
 
 	customGiftData = {
+		customName = "NPC_Thanatos_01",
 		maxRequirement = maxReq,
 		minRequirement = minReq,
 	},

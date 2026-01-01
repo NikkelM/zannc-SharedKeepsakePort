@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Unreleased]
+- Fix "Keepsake Received" popup missing when receiving keepsakes in Zagreus' Journey.
 
 ## [1.1.3] - 2025-12-23
 
