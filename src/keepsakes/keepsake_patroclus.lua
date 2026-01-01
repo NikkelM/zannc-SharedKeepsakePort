@@ -47,6 +47,7 @@ gods.CreateKeepsake({
 	},
 
 	customGiftData = {
+		customName = "NPC_Patroclus_01",
 		maxRequirement = maxReq,
 		minRequirement = minReq,
 	},
