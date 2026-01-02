@@ -1,6 +1,8 @@
 # Changelog
 
 ## [Unreleased]
+Fix issue where any healing was shown as +0 on interaction instead of the actual value.
+Fix issue where if you were right on the threshold for Meg's keepsake, it still wouldn't proc.
 
 ## [1.1.4] - 2026-01-01
 

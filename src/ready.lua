@@ -167,12 +167,12 @@ end)
 
 modutil.mod.Path.Wrap("Heal", function(base, victim, triggerArgs)
 	base(victim, triggerArgs)
-	local prevHealth = victim.Health
-	triggerArgs.ActualHealAmount = round(victim.Health - prevHealth)
+	-- local prevHealth = victim.Health
+	-- triggerArgs.ActualHealAmount = round(victim.Health - prevHealth)
 	if victim == CurrentRun.Hero then
 		for i, traitData in pairs(CurrentRun.Hero.Traits) do
 			local thresholdData = traitData.LowHealthThresholdText
-			if thresholdData ~= nil and CurrentRun.Hero.Health / CurrentRun.Hero.MaxHealth > thresholdData.PercentThreshold then -- and (CurrentRun.Hero.Health - triggerArgs.ActualHealAmount) / CurrentRun.Hero.MaxHealth <= thresholdData.PercentThreshold
+			if thresholdData ~= nil and CurrentRun.Hero.Health / CurrentRun.Hero.MaxHealth >= thresholdData.PercentThreshold then -- and (CurrentRun.Hero.Health - triggerArgs.ActualHealAmount) / CurrentRun.Hero.MaxHealth <= thresholdData.PercentThreshold
 				TraitUIDeactivateTrait(traitData)
 			end
 		end
