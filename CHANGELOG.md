@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+
+## [1.1.5] - 2026-01-02
+
 Fix issue where any healing was shown as +0 on interaction instead of the actual value.
 Fix issue where if you were right on the threshold for Meg's keepsake, it still wouldn't proc.
 
@@ -70,7 +73,8 @@ Fix issue where if you were right on the threshold for Meg's keepsake, it still 
 
 - Initial Release.
 
-[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.4...HEAD
+[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.5...HEAD
+[1.1.5]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.4...1.1.5
 [1.1.4]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.3...1.1.4
 [1.1.3]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.2...1.1.3
 [1.1.2]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.1...1.1.2
