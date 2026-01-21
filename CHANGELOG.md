@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+
+## [1.1.6] - 2026-01-21
+
 Fixed crashes with Hermes and Thanatos' keepsakes when you clear a room due to a nil plugin reference. Closes #10
 Fixed issue where Hermes & Thanatos would lose their respective bonuses if ranked up midrun. Closes #11
 QOL: Changed Thanatos' and Hermes' keepsake descriptions to display the bonus gained per room completed. Closes #12
@@ -76,7 +79,8 @@ Fix issue where if you were right on the threshold for Meg's keepsake, it still 
 
 - Initial Release.
 
-[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.5...HEAD
+[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.6...HEAD
+[1.1.6]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.5...1.1.6
 [1.1.5]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.4...1.1.5
 [1.1.4]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.3...1.1.4
 [1.1.3]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.2...1.1.3
