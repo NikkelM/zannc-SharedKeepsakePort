@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+
+## [1.1.7] - 2026-01-21
+
 Fix: Forgot table insert that fixes reset to 0% fix on advancing Thanatos and Hermes keepsakes.
 
 ## [1.1.6] - 2026-01-21
@@ -80,7 +83,8 @@ Fix issue where if you were right on the threshold for Meg's keepsake, it still 
 
 - Initial Release.
 
-[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.6...HEAD
+[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.7...HEAD
+[1.1.7]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.6...1.1.7
 [1.1.6]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.5...1.1.6
 [1.1.5]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.4...1.1.5
 [1.1.4]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.3...1.1.4
