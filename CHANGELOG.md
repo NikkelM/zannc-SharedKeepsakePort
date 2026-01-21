@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Unreleased]
+Fix: Forgot table insert that fixes reset to 0% fix on advancing Thanatos and Hermes keepsakes.
 
 ## [1.1.6] - 2026-01-21
 
