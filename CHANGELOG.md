@@ -1,6 +1,7 @@
 # Changelog
 
 ## [Unreleased]
+Added Oprheus' Keepsake.
 
 ## [1.1.8] - 2026-01-26
 

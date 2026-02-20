@@ -52,6 +52,7 @@ local function on_ready()
         "Eurydice",
         "Patroclus",
         "Thanatos",
+        "Orpheus",
     }
 
     for _, name in ipairs(names) do
