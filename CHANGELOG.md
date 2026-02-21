@@ -1,6 +1,9 @@
 # Changelog
 
 ## [Unreleased]
+
+## [1.2.0] - 2026-02-21
+
 Added Oprheus' Keepsake.
 
 ## [1.1.8] - 2026-01-26
@@ -88,7 +91,8 @@ Fix issue where if you were right on the threshold for Meg's keepsake, it still 
 
 - Initial Release.
 
-[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.8...HEAD
+[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.2.0...HEAD
+[1.2.0]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.8...1.2.0
 [1.1.8]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.7...1.1.8
 [1.1.7]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.6...1.1.7
 [1.1.6]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.5...1.1.6
