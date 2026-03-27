@@ -1,3 +1,15 @@
+local maxReq = {}
+local minReq = {}
+
+if mod.hades_Biomes then
+	maxReq = {
+		PathTrue = { "GameState", "TextLinesRecord", "MegaeraGift10" },
+	}
+	minReq = {
+		PathTrue = { "GameState", "TextLinesRecord", "MegaeraGift01" },
+	}
+end
+
 gods.CreateKeepsake({
 	characterName = "Megaera",
 	internalKeepsakeName = "LowHealthDamageKeepsake",
@@ -34,8 +46,8 @@ gods.CreateKeepsake({
 
 	customGiftData = {
 		customName = "NPC_Megaera_02",
-		maxRequirement = {},
-		minRequirement = {},
+		maxRequirement = maxReq,
+		minRequirement = minReq,
 	},
 
 	ExtraFields = {
