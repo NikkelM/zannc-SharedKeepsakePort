@@ -45,7 +45,7 @@ gods.CreateKeepsake({
 	},
 
 	customGiftData = {
-		customName = "NPC_Megaera_02",
+		customName = "NPC_FurySister_01",
 		maxRequirement = maxReq,
 		minRequirement = minReq,
 	},
