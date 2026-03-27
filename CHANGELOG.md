@@ -2,9 +2,11 @@
 
 ## [Unreleased]
 
+- Moved Megaera's keepsake from `KeepsakePort` to `SharedKeepsakePort`.
+
 ## [1.2.0] - 2026-02-21
 
-Added Oprheus' Keepsake.
+- Added Orpheus' Keepsake.
 
 ## [1.1.8] - 2026-01-26
 
@@ -12,18 +14,18 @@ Added Oprheus' Keepsake.
 
 ## [1.1.7] - 2026-01-21
 
-Fix: Forgot table insert that fixes reset to 0% fix on advancing Thanatos and Hermes keepsakes.
+- Fix: Forgot table insert that fixes reset to 0% fix on advancing Thanatos and Hermes keepsakes.
 
 ## [1.1.6] - 2026-01-21
 
-Fixed crashes with Hermes and Thanatos' keepsakes when you clear a room due to a nil plugin reference. Closes #10
-Fixed issue where Hermes & Thanatos would lose their respective bonuses if ranked up midrun. Closes #11
-QOL: Changed Thanatos' and Hermes' keepsake descriptions to display the bonus gained per room completed. Closes #12
+- Fixed crashes with Hermes and Thanatos' keepsakes when you clear a room due to a nil plugin reference. Closes #10
+- Fixed issue where Hermes & Thanatos would lose their respective bonuses if ranked up midrun. Closes #11
+- QOL: Changed Thanatos' and Hermes' keepsake descriptions to display the bonus gained per room completed. Closes #12
 
 ## [1.1.5] - 2026-01-02
 
-Fix issue where any healing was shown as +0 on interaction instead of the actual value.
-Fix issue where if you were right on the threshold for Meg's keepsake, it still wouldn't proc.
+- Fix issue where any healing was shown as +0 on interaction instead of the actual value.
+- Fix issue where if you were right on the threshold for Meg's keepsake, it still wouldn't proc.
 
 ## [1.1.4] - 2026-01-01
 
