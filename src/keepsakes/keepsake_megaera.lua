@@ -1,12 +1,24 @@
+local maxReq = {}
+local minReq = {}
+
+if mod.hades_Biomes then
+	maxReq = {
+		PathTrue = { "GameState", "TextLinesRecord", "MegaeraGift10" },
+	}
+	minReq = {
+		PathTrue = { "GameState", "TextLinesRecord", "MegaeraGift01" },
+	}
+end
+
 gods.CreateKeepsake({
 	characterName = "Megaera",
 	internalKeepsakeName = "LowHealthDamageKeepsake",
 
 	RarityLevels = {
-		Common = { Multiplier = mod.keepsakePortConfig.Megaera.a_KeepsakeCommon },
-		Rare = { Multiplier = mod.keepsakePortConfig.Megaera.b_KeepsakeRare },
-		Epic = { Multiplier = mod.keepsakePortConfig.Megaera.c_KeepsakeEpic },
-		Heroic = { Multiplier = mod.keepsakePortConfig.Megaera.d_KeepsakeHeroic },
+		Common = { Multiplier = config.Megaera.a_KeepsakeCommon },
+		Rare = { Multiplier = config.Megaera.b_KeepsakeRare },
+		Epic = { Multiplier = config.Megaera.c_KeepsakeEpic },
+		Heroic = { Multiplier = config.Megaera.d_KeepsakeHeroic },
 	},
 
 	ExtractValues = {
@@ -33,9 +45,9 @@ gods.CreateKeepsake({
 	},
 
 	customGiftData = {
-		customName = "NPC_Megaera_02",
-		maxRequirement = {},
-		minRequirement = {},
+		customName = "NPC_FurySister_01",
+		maxRequirement = maxReq,
+		minRequirement = minReq,
 	},
 
 	ExtraFields = {

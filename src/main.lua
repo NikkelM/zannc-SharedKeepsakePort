@@ -45,7 +45,6 @@ local function on_ready()
         "Hermes",
         "Persephone",
         -- "Chaos",
-        "Megaera",
         -- "Nyx",
         --*SharedKeepsakePort
         "Sisyphus",
@@ -53,6 +52,7 @@ local function on_ready()
         "Patroclus",
         "Thanatos",
         "Orpheus",
+        "Megaera",
     }
 
     for _, name in ipairs(names) do

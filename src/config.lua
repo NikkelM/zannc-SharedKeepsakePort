@@ -42,6 +42,14 @@ local config = {
         c_KeepsakeEpic = 3.0,
         d_KeepsakeHeroic = 4.0,
     },
+
+    Megaera = {
+		Enabled = true,
+		a_KeepsakeCommon = 1.0,
+		b_KeepsakeRare = 1.5,
+		c_KeepsakeEpic = 2.0,
+		d_KeepsakeHeroic = 3.0,
+	},
 }
 
 local descriptions = {
@@ -71,6 +79,11 @@ local descriptions = {
         Enabled = "Set to true to enable keepsake, false to disable.\nNOTE: When disabling keepsakes, make sure you unequip them and save your game",
         a_KeepsakeCommon = "Increase value to increase damage bonus when further than 500 units.",
     },
+
+	Megaera = {
+		Enabled = "Set to true to enable keepsake, false to disable.\nNOTE: When disabling keepsakes, make sure you unequip them and save your game",
+		a_KeepsakeCommon = "Increase value to increase damage, decrease for opposite effect.\nExample: 3.0 will set bonus to 60%, 0.5 will set it to +10%",
+	},
 }
 
 return config, descriptions
