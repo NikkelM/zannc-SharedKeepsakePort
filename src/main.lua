@@ -32,20 +32,33 @@ config = chalk.auto("config.lua")
 public.config = config
 
 local function on_ready()
-    local keepsakePort = mods["zannc-KeepsakePort"]
-    mod.keepsakePortConfig = nil
-    if keepsakePort then
-        mod.keepsakePortConfig = keepsakePort.config
-    end
-
     import("ready.lua")
 
-    local names = {
-        --*KeepsakePort
-        "Hermes",
-        "Persephone",
-        -- "Chaos",
-        -- "Nyx",
+    local keepsakePort = mods["zannc-KeepsakePort"]
+    mod.keepsakePortConfig = nil
+
+    if keepsakePort then
+        mod.keepsakePortConfig = keepsakePort.config
+
+        local keepsakePort_names = {
+            --*KeepsakePort
+            "Hermes",
+            "Persephone",
+            -- "Chaos",
+            -- "Nyx",
+        }
+
+        for _, name in ipairs(keepsakePort_names) do
+            if mod.keepsakePortConfig and mod.keepsakePortConfig[name] and mod.keepsakePortConfig[name].Enabled then
+                import("keepsakes/keepsake_" .. string.lower(name) .. ".lua")
+            end
+        end
+
+        table.insert(game.PersistentKeepsakeKeys, "AccumulatedDamageBonus")
+        table.insert(game.PersistentKeepsakeKeys, "AccumulatedDodgeBonus")
+    end
+
+    local sharedPort_names = {
         --*SharedKeepsakePort
         "Sisyphus",
         "Eurydice",
@@ -53,19 +66,14 @@ local function on_ready()
         "Thanatos",
         "Orpheus",
         "Megaera",
+        "Achilles",
     }
 
-    for _, name in ipairs(names) do
+    for _, name in ipairs(sharedPort_names) do
         if config[name] and config[name].Enabled then
             import("keepsakes/keepsake_" .. string.lower(name) .. ".lua")
         end
-        if mod.keepsakePortConfig and mod.keepsakePortConfig[name] and mod.keepsakePortConfig[name].Enabled then
-            import("keepsakes/keepsake_" .. string.lower(name) .. ".lua")
-        end
     end
-
-    table.insert(game.PersistentKeepsakeKeys, "AccumulatedDamageBonus")
-    table.insert(game.PersistentKeepsakeKeys, "AccumulatedDodgeBonus")
 end
 
 local function on_reload()

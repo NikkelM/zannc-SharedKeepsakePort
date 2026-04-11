@@ -3,6 +3,8 @@
 ## [Unreleased]
 
 - Moved Megaera's keepsake from `KeepsakePort` to `SharedKeepsakePort`.
+- Added `Achilles` to `SharedKeepsakePort`.
+- Fix: Possible issue resolved where keepsakes can be duplicated when loaded due to movement between `KeepsakePort` and `SharedKeepsakePort` due to configs.
 
 ## [1.2.0] - 2026-02-21
 
