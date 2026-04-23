@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-04-23
+
 - Moved Megaera's keepsake from `KeepsakePort` to `SharedKeepsakePort`.
 - Added `Achilles` to `SharedKeepsakePort`.
 - Fix: Possible issue resolved where keepsakes can be duplicated when loaded due to movement between `KeepsakePort` and `SharedKeepsakePort` due to configs.
@@ -95,7 +97,8 @@
 
 - Initial Release.
 
-[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.2.0...HEAD
+[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.4.0...HEAD
+[1.4.0]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.2.0...1.4.0
 [1.2.0]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.8...1.2.0
 [1.1.8]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.7...1.1.8
 [1.1.7]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.6...1.1.7
