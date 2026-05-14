@@ -55,7 +55,7 @@ local function on_ready()
         end
 
         table.insert(game.PersistentKeepsakeKeys, "AccumulatedDodgeBonus")
-end
+    end
 
     local sharedPort_names = {
         --*SharedKeepsakePort
