@@ -54,7 +54,6 @@ local function on_ready()
             end
         end
 
-        table.insert(game.PersistentKeepsakeKeys, "AccumulatedDamageBonus")
         table.insert(game.PersistentKeepsakeKeys, "AccumulatedDodgeBonus")
     end
 
@@ -74,6 +73,8 @@ local function on_ready()
             import("keepsakes/keepsake_" .. string.lower(name) .. ".lua")
         end
     end
+
+    table.insert(game.PersistentKeepsakeKeys, "AccumulatedDamageBonus")
 end
 
 local function on_reload()

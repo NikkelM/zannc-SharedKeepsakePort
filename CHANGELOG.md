@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Fixed: The displayed damage bonus value for Thanatos' keepsake resets on level up if `KeepsakePort` is not installed.
+
 ## [1.4.0] - 2026-04-23
 
 - Moved Megaera's keepsake from `KeepsakePort` to `SharedKeepsakePort`.
