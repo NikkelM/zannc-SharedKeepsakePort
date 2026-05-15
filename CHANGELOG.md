@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.4.1] - 2026-05-15
+
 - Fixed: The displayed damage bonus value for Thanatos' keepsake resets on level up if `KeepsakePort` is not installed.
 
 ## [1.4.0] - 2026-04-23
@@ -99,7 +101,8 @@
 
 - Initial Release.
 
-[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.4.0...HEAD
+[unreleased]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.4.1...HEAD
+[1.4.1]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.4.0...1.4.1
 [1.4.0]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.2.0...1.4.0
 [1.2.0]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.8...1.2.0
 [1.1.8]: https://github.com/excellent-ae/zannc-SharedKeepsakePort/compare/1.1.7...1.1.8
